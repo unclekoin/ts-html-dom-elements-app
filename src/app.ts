@@ -150,6 +150,27 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   abstract renderContent(): void;
 }
 
+// ProjectItem Class
+class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+  private project: Project;
+
+  constructor(hostId: string, project: Project) {
+    super("single-project", hostId, false, project.id);
+    this.project = project;
+
+    this.configure();
+    this.renderContent();
+  }
+
+  configure(): void {}
+
+  renderContent(): void {
+    this.element.querySelector('h2')!.textContent = this.project.title;
+    this.element.querySelector('h3')!.textContent = this.project.people.toString();
+    this.element.querySelector('p')!.textContent = this.project.description;
+  }
+}
+
 // ProjectList Class
 class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: Project[];
@@ -162,7 +183,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     this.renderContent();
   }
 
-  configure() {
+  configure(): void {
     projectState.addListeners((projects: Project[]) => {
       const relevantProjects = projects.filter((project) => {
         if (this.type === "active") {
@@ -175,7 +196,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     });
   }
 
-  renderContent() {
+  renderContent(): void {
     const listId = `${this.type}-project-list`;
     this.element.querySelector("ul")!.id = listId;
     this.element.querySelector("h2")!.textContent =
@@ -189,9 +210,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     listElement.innerHTML = "";
 
     for (const projectItem of this.assignedProjects) {
-      const listItem = document.createElement("li");
-      listItem.textContent = projectItem.title;
-      listElement.append(listItem);
+      new ProjectItem(this.element.querySelector('ul')!.id, projectItem);
     }
   }
 }
@@ -218,11 +237,11 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     this.configure();
   }
 
-  configure() {
+  configure(): void {
     this.element.addEventListener("submit", this.submitHandler);
   }
 
-  renderContent() {}
+  renderContent(): void {}
 
   private gatherUserInput(): [string, string, number] | void {
     const enteredTitle = this.titleInputElement.value;
