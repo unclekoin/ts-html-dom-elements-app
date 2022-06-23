@@ -1,69 +1,113 @@
+:root {
+  --ruler: 16px;
+  --color-red: #ae1100;
+  --color-bg: #ebecf0;
+  --color-shadow: #babecc;
+  --color-white: #ffffff;
+}
+
 * {
   box-sizing: border-box;
 }
 
-html {
-  font-family: sans-serif;
+body, html {
+  background-color: var(--color-bg);
 }
 
-body {
-  margin: 0;
+body, p, input, select, textarea, button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--ruler);
 }
 
-label,
-input,
+div, 
+p, 
+h2 {
+  color: var(--color-shadow);
+  text-shadow: 1px 1px 1px var(--color-white);
+}
+
+
+form {
+  padding: var(--ruler);
+  margin: 0 auto;
+}
+
+.segment {
+  padding: calc(var(--ruler) * 2) 0;
+  text-align: center;
+}
+
+button, 
+input, 
 textarea {
-  display: block;
-  margin: 0.5rem 0;
+  border: 0;
+  outline: 0;
+  font-size: var(--ruler);
+  border-radius: calc(var(--ruler) * 20);
+  padding: var(--ruler);
+  background-color:var(--color-bg);
+  text-shadow: 1px 1px 0 var(--color-white);
+}
+
+textarea {
+  border-radius: calc(var(--ruler) * 1.5);
+  resize: none;
 }
 
 label {
-  font-weight: bold;
+  display: block;
+  margin-bottom: calc(var(--ruler) * 1.5);
+  width: 100%;
 }
 
 input,
 textarea {
-  font: inherit;
-  padding: 0.2rem 0.4rem;
+  margin-right: calc(var(--ruler / 2));
+  box-shadow:  inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
   width: 100%;
-  max-width: 30rem;
-  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 input:focus,
 textarea:focus {
-  outline: none;
-  background: #fff5f9;
+  box-shadow:  inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
 }
 
 button {
-  font: inherit;
-  background: #ff0062;
-  border: 1px solid #ff0062;
-  border-radius: 50px;
+  color:#61677C;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px var(--color-white),  5px 5px 20px var(--color-shadow);
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
-  color: white;
-  padding: 0.75rem 1rem;
+  font-weight: 600;
 }
 
-button:focus {
-  outline: none;
+button:hover {
+  box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
 }
 
-button:hover,
 button:active {
-  background: #a80041;
-  border-color: #a80041;
+  box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
+}
+
+button.red {
+  display: block;
+  width: 100%;
+  color:var(--color-red);
 }
 
 .projects {
   margin: 1rem;
-  border: 1px solid #ff0062;
+  border-radius: var(--radius);
+  box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
+  overflow: hidden;
 }
 
 .projects header {
-  background: #ff0062;
-  height: 3.5rem;
+  height: calc(var(--ruler) * 3.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,47 +115,28 @@ button:active {
 }
 
 #app {
-  max-width: 500px;
+  max-width: calc(var(--ruler) * 35);
   margin: 0 auto;
-}
-
-#finished-projects {
-  border-color: #0044ff;
-}
-
-#finished-projects header {
-  background: #0044ff;
-}
-
-.projects h2 {
-  margin: 0;
-  color: white;
 }
 
 .projects ul {
   list-style: none;
   margin: 0;
-  padding: 1rem;
+  padding: var(--ruler);
 }
 
 .projects li {
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-  margin: 1rem;
+  box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
+  padding: var(--ruler);
+  margin: var(--ruler);
 }
 
 .projects li h2 {
-  color: #ff0062;
-  margin: 0.5rem 0;
-}
-
-#finished-projects li h2 {
-  color: #0044ff;
+  margin: calc(var(--ruler) / 2) 0;
 }
 
 .projects li h3 {
-  color: #575757;
-  font-size: 1rem;
+  font-size: var(--ruler);
 }
 
 .project li p {
@@ -119,16 +144,13 @@ button:active {
 }
 
 .droppable {
-  background: #ffe3ee;
+  background-color: red;
 }
 
 #finished-projects .droppable {
-  background: #d6e1ff;
+  background-color: blue;
 }
 
 #user-input {
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #ff0062;
-  background: #f7f7f7;
+  background-color: var(--color-bg);
 }
