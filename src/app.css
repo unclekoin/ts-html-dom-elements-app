@@ -2,6 +2,7 @@
   --ruler: 16px;
   --color-red: #ae1100;
   --color-bg: #ebecf0;
+  --color-text-project: #61677C;
   --color-shadow: #babecc;
   --color-white: #ffffff;
 }
@@ -50,7 +51,7 @@ textarea {
 }
 
 textarea {
-  border-radius: calc(var(--ruler) * 1.5);
+  border-radius: var(--ruler);
   resize: none;
 }
 
@@ -107,11 +108,14 @@ button.red {
 }
 
 .projects header {
-  height: calc(var(--ruler) * 3.5);
   display: flex;
   justify-content: center;
   align-items: center;
   list-style: none;
+}
+
+.projects h2 {
+  margin-bottom: 0;
 }
 
 #app {
@@ -122,33 +126,41 @@ button.red {
 .projects ul {
   list-style: none;
   margin: 0;
-  padding: var(--ruler);
+  padding: 0 var(--ruler) var(--ruler);
 }
 
 .projects li {
   box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
   padding: var(--ruler);
   margin: var(--ruler);
+  cursor: grab;
+}
+
+.projects li:active {
+  cursor: move;
 }
 
 .projects li h2 {
+  color: var(--color-text-project);
   margin: calc(var(--ruler) / 2) 0;
 }
 
 .projects li h3 {
+  color: var(--color-text-project);
   font-size: var(--ruler);
 }
 
-.project li p {
+.projects li p {
+  color: var(--color-text-project);
   margin: 0;
 }
 
 .droppable {
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #finished-projects .droppable {
-  background-color: blue;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #user-input {
